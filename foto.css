@@ -1,0 +1,200 @@
+.slider {
+    height: 250px;
+    position: relative;
+    width: 90%;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    margin-top: 25px;
+}
+
+.slide-track {
+    display: flex;
+    width: calc(250px * 9);
+    overflow: hidden;
+    animation: scroll-left 30s linear infinite;
+}
+.slide-track:hover {
+    animation-play-state: paused;
+}
+
+.slide {
+    height: 200px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    perspective: 100px;
+    position: relative;
+}
+
+#foto {
+    width: 100%;
+    transition: transform 3s;
+}
+
+#foto:hover {
+    transform: translateZ(20px);
+}
+
+.slider::before,
+.slider::after {
+    background: linear-gradient(to right);
+    content: '';
+    height: 100%;
+    position: absolute;
+    width: 15%;
+    z-index: 1; 
+}
+
+.slider::before {
+    left: 0;
+    top: 0;
+    z-index: 2; 
+}
+
+.slide::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: linear-gradient(to right);
+    width: 15%;
+    height: 100%;
+    transform: rotateZ(180deg);
+    z-index: 2; 
+}
+
+/* Animacija slinkimui į kairę */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-250px * 9));
+    }
+}
+
+
+/*kitos fot*/
+
+.slider-1 {
+    height: 250px;
+    margin: auto;
+    position: relative;
+    width: 90%;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.slide-track-1 {
+    display: flex;
+    width: calc(250px * 9);
+    overflow: hidden;
+    animation: scroll-right 30s linear infinite;
+}
+.slide-track-1:hover {
+    animation-play-state: paused;
+}
+
+.slide-1 {
+    height: 200px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    perspective: 100px;
+}
+#fot {
+    width: 100%;
+    transition: transform 3s;
+}
+#fot:hover {
+    transform: translateZ(20px);
+}
+
+.slider-1::before,
+.slider-1::after {
+    background: linear-gradient(to left);
+    content: '';
+    height: 100%;
+    position: absolute;
+    width: 15%;
+    z-index: 2;
+}
+
+.slider-1::before {
+    left: 0;
+    top: 0;
+}
+.slide-1::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+}
+
+/*  animacija slinkimui į dešinę */
+@keyframes scroll-right {
+    0% {
+        transform: translateX(calc(-250px * 8));
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .slider,
+    .slider-1 {
+        height: 200px;
+        width: 90%;
+        margin: 25px auto;
+    }
+
+    .slide-track,
+    .slide-track-1 {
+        width: calc(200px * 9);
+        animation-duration: 30s;
+    }
+
+    .slide,
+    .slide-1 {
+        height: 150px;
+        width: 200px;
+        padding: 10px;
+    }
+
+    #foto,
+    #fot {
+        transition: transform 2s;
+    }
+
+    .slider::before,
+    .slider::after,
+    .slider-1::before,
+    .slide-1::after {
+        width: 10%;
+    }
+
+    /* Išjungti animaciją, kai paspaudžiamas ant slido mobiliajame įrenginyje */
+    .slide:hover #foto,
+    .slide-1:hover #fot {
+        transform: none;
+    }
+
+    /* Išjungti slinkimo animaciją mobiliajame įrenginyje */
+    .slide-track:hover,
+    .slide-track-1:hover {
+        animation-play-state: paused;
+    }
+
+    /* Papildomi stiliai, kad būtų geriau matomas turinys mažesniuose ekranuose */
+    .slide::after,
+    .slide-1::after {
+        width: 10%;
+        z-index: 0;
+    }
+}
